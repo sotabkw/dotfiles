@@ -75,12 +75,9 @@ alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gst='git stash'
 alias gsl='git stash list'
-git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit'alias gsu='git stash -u'
-alias gsp='git stash pop'
 
 # プロンプトカスタマイズ
 PROMPT='
 [%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
 %F{yellow}$%f '
-
 
