@@ -1,0 +1,133 @@
+{
+  "python.pythonPath": "/usr/bin/python3",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.autofetch": true,
+  "workbench.colorTheme": "Tokyo Night",
+  "editor.autoClosingBrackets": "always",
+  "workbench.preferredHighContrastColorTheme": "Default Dark+",
+  "editor.columnSelection": true,
+  "editor.fontFamily": "Roboto Mono",
+  "editor.bracketPairColorization.enabled": true,
+  "workbench.preferredLightColorTheme": "Default Dark+",
+  "editor.suggestFontSize": 14,
+  "files.autoSave": "afterDelay",
+  "workbench.preferredDarkColorTheme": "Solarized Light",
+  "workbench.iconTheme": "vscode-icons", //拡張機能vscode-iconsを有効化
+  "diffEditor.renderSideBySide": false, // Git の差分を行内に表示
+  "editor.colorDecorators": false, // カラーデコレーターを非表示
+  "editor.defaultFormatter": "esbenp.prettier-vscode", //拡張機能Prettierを有効にする
+  "prettier.printWidth": 360, //拡張機能Prettierの改行する文字数を３６０文字に変更
+  "editor.minimap.renderCharacters": false, // ミニマップの表示文字をブロックに変更
+  "editor.copyWithSyntaxHighlighting": false, // ドラッグアンドドロップで選択範囲のテキストを移動できるようにする
+  "editor.minimap.showSlider": "always", // 表示領域をミニマップで常にハイライト
+  "editor.multiCursorModifier": "ctrlCmd", // マウスでの複数選択時の修飾キーを変更
+  "editor.renderControlCharacters": true, // 制御文字を表示
+  "editor.renderLineHighlight": "all", // 選択行を行番号含めすべてハイライト
+  "editor.renderWhitespace": "all", // 半角スペースを常に表示
+  "editor.snippetSuggestions": "top", // Emmet などのスニペット候補を優先して表示
+  "editor.tabSize": 2, // タブのサイズ変更
+  "editor.formatOnType": true, // 入力した行を自動でフォーマット
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "editor.wordWrap": "on", // エディターの幅で折り返し
+  "emmet.showSuggestionsAsSnippets": true, // Emmet の候補を表示
+  "emmet.triggerExpansionOnTab": true, // TAB キーで Emmet を展開できるようにする
+  "emmet.variables": {
+    // Emmet で展開される HTML の言語を変更
+    "lang": "ja"
+  },
+  "explorer.confirmDelete": false, // ファイル削除時の確認を表示しない
+  "files.associations": {
+    // ファイルと言語の関連付けを変更
+    ".*lintrc": "json"
+  },
+  "files.exclude": {
+    // エクスプローラーから非表示にするファイル
+    "**/*.map": true,
+    "**/node_modules": true
+  },
+  "files.insertFinalNewline": true, // ファイルの保存時に末尾を改行
+  "files.trimFinalNewlines": true, // ファイルの保存時に最終行以降をトリミング
+  "files.trimTrailingWhitespace": true, // ファイルの保存時に行末の空白をトリミング
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false // Markdown のファイルは行末の空白をトリミングしない
+  },
+  "html.format.contentUnformatted": "pre, code, textarea, title, h1, h2, h3, h4, h5, h6, p", // タグ内の記述はフォーマットしない
+  "html.format.extraLiners": "", // head, body, /html タグの前に改行を入れない
+  "html.format.unformatted": null, // フレージング・コンテンツ（旧インライン要素のようなタグ）はフォーマットしない
+  "html.format.wrapLineLength": 0, // 行の文字数制限を無くし自動で改行させない
+  "search.exclude": {
+    // 検索対象外にするファイル設定（ files.exclude のファイルも含む）
+    "**/tmp": true
+  },
+  "window.openFoldersInNewWindow": "on", // 新規ワークスペースを別ウインドウで開く
+  "window.title": "${activeEditorMedium}${separator}${rootName}", // ウインドウ上部に表示する文字列の設定
+  "workbench.editor.labelFormat": "short", // タブに表示する文字列の設定
+  "workbench.editor.tabSizing": "shrink", // タブの表示設定
+  "workbench.startupEditor": "none", // Welcome Page を表示しない
+  "html.autoClosingTags": false, //終了タグが自動で生成されるのを防ぐ
+  "[javascript]": {
+    //JavaScriptではhoverしたときに説明を表示
+    "editor.hover.enabled": true
+  },
+  "[typescript]": {
+    //TypeScriptではhoverしたときに説明を表示
+    "editor.hover.enabled": true
+  },
+  "explorer.compactFolders": false,
+  "editor.definitionLinkOpensInPeek": true,
+  "files.eol": "\n",
+  // デバッグ中に行内に変数値を表示
+  "debug.inlineValues": true,
+  // デバッグコンソールの表示方法
+  "debug.internalConsoleOptions": "openOnSessionStart",
+  // デバッグビューの表示方法
+  "debug.openDebug": "openOnSessionStart",
+  // ドラッグアンドドロップで選択範囲のテキストを移動できるようにする
+  "editor.dragAndDrop": false,
+  // ミニマップの最大幅
+  "editor.minimap.maxColumn": 60,
+  // ミニマップのサイズ
+  "editor.minimap.size": "fit",
+  // 行の折りたたみ記号の表示方法
+  "editor.showFoldingControls": "always",
+  // 単語の区切り文字
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?　、。！？「」【】『』（）",
+  // 行の折り返し表示
+  "files.watcherExclude": {
+    // あれば記述する
+  },
+  // 検索ビューの検索結果に行数を併記
+  "search.showLineNumbers": true,
+  // アクティブなターミナルセッションがある場合、終了時に確認を行う
+  "terminal.integrated.confirmOnExit": true,
+  // ターミナルで選択したテキストをクリップボードにコピー
+  "terminal.integrated.copyOnSelection": true,
+  // エディターのタブのサイズ  /* 各言語、ファイル固有の設定 */
+  "[csv]": {
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  },
+  "[json]": {
+    // 既定のフォーマッター
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[log]": {
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  },
+  "[python]": {
+    // 1つのタブに相当する半角スペースの数
+    "editor.tabSize": 4
+  },
+  "[tsv]": {
+    // Tabキーで半角スペースを挿入
+    "editor.insertSpaces": false,
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  },
+  "editor.fontSize": 14
+}
