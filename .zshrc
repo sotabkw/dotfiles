@@ -94,3 +94,6 @@ function code {
         open -a "Visual Studio Code" "$argPath"
     fi
 }
+
+eval "$(starship init zsh)"
+
