@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e
 
-dotfiles=(.zshrc .tmux.conf)
+IGNORE_PATTERN="^\.(git|travis)"
 
-for file in "${dotfiles[@]}"; do
-        ln -svf $file ~/
+echo "Create dotfile links."
+for dotfile in .??*; do
+    [[ $dotfile =~ $IGNORE_PATTERN ]] && continue
+    ln -snfv "$(pwd)/$dotfile" "$HOME/$dotfile"
 done
+echo "Success"
