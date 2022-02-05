@@ -76,6 +76,7 @@ alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gst='git stash'
 alias gsl='git stash list'
+alias gca='git commit --amend --no-edit'
 
 # プロンプトカスタマイズ
 PROMPT='
