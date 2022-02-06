@@ -72,6 +72,7 @@ alias gmod='git merge origin/develop'
 alias gmud='git merge upstream/develop'
 alias gmom='git merge origin/master'
 alias gcm='git commit -m'
+alias gac="git add . && git commit -m" # + commit message
 alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gst='git stash'
