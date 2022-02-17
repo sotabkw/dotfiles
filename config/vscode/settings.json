@@ -4,7 +4,6 @@
   "editor.formatOnPaste": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "git.autofetch": true,
-  "workbench.colorTheme": "Tokyo Night",
   "editor.autoClosingBrackets": "always",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
   "editor.columnSelection": false,
@@ -13,8 +12,7 @@
   "workbench.preferredLightColorTheme": "Default Dark+",
   "editor.suggestFontSize": 14,
   "files.autoSave": "afterDelay",
-  "workbench.preferredDarkColorTheme": "Solarized Light",
-  "workbench.iconTheme": "vscode-icons", //拡張機能vscode-iconsを有効化
+  "workbench.preferredDarkColorTheme": "Solarized Light", //拡張機能vscode-iconsを有効化
   "diffEditor.renderSideBySide": false, // Git の差分を行内に表示
   "editor.colorDecorators": false, // カラーデコレーターを非表示
   "editor.defaultFormatter": "esbenp.prettier-vscode", //拡張機能Prettierを有効にする
@@ -134,5 +132,7 @@
     "*.mp4": "default"
   },
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Dracula"
 }
