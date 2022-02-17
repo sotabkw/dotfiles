@@ -7,7 +7,7 @@
   "workbench.colorTheme": "Tokyo Night",
   "editor.autoClosingBrackets": "always",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
-  "editor.columnSelection": true,
+  "editor.columnSelection": false,
   "editor.fontFamily": "Roboto Mono",
   "editor.bracketPairColorization.enabled": true,
   "workbench.preferredLightColorTheme": "Default Dark+",
@@ -129,5 +129,10 @@
     // 行の折り返し表示
     "editor.wordWrap": "off"
   },
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "workbench.editorAssociations": {
+    "*.mp4": "default"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
