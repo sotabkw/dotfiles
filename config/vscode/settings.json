@@ -134,5 +134,9 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Dracula"
+  "workbench.colorTheme": "Dracula",
+  "go.toolsManagement.autoUpdate": true,
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "go.gopath": "/Users/watanabesota/go",
+  "go.goroot": "/Users/watanabesota/.anyenv/envs/goenv/versions/1.18.0"
 }
