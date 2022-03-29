@@ -4,6 +4,8 @@ alias -g la='ls -a'
 
 # 環境変数
 export LANG=ja_JP.UTF-8
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
 
 # ヒストリの設定
 HISTFILE=~/.zsh_history
