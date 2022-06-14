@@ -137,6 +137,4 @@
   "workbench.colorTheme": "Dracula",
   "go.toolsManagement.autoUpdate": true,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-  "go.gopath": "/Users/watanabesota/go/1.18.0",
-  "go.goroot": "/Users/watanabesota/.anyenv/envs/goenv/versions/1.18.0"
 }
