@@ -2,16 +2,12 @@ eval "$(anyenv init -)"
 alias -g dc='docker-compose'
 alias -g la='ls -a'
 
-# 環境変数
-export LANG=ja_JP.UTF-8
-export GOPATH=$HOME/.goenv
-export PATH=$GOPATH/bin:$PATH
-eval "$(goenv init -)"
-
 # ヒストリの設定
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
+
+export PATH=${HOME}/go/bin:${PATH}
 
 # 直前のコマンドの重複を削除
 setopt hist_ignore_dups
