@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 eval "$(anyenv init -)"
 alias -g dc='docker-compose'
 alias -g la='ls -a'
@@ -96,5 +98,16 @@ function code {
     fi
 }
 
+function gifgen() {
+  if [ $# -lt 3 ]; then
+    command ffmpeg -i $1 -filter_complex "[0:v] fps=10,scale=640:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" $2
+  else
+    command ffmpeg -i $1 -filter_complex "[0:v] fps=10,scale=$3:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" $2
+  fi
+}
+
+
 eval "$(starship init zsh)"
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

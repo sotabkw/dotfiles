@@ -1,6 +1,6 @@
 {
   "python.pythonPath": "/usr/bin/python3",
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "git.autofetch": true,
@@ -137,4 +137,5 @@
   "workbench.colorTheme": "Dracula",
   "go.toolsManagement.autoUpdate": true,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "typescript.updateImportsOnFileMove.enabled": "always",
 }
