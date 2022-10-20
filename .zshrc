@@ -1,8 +1,9 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 eval "$(anyenv init -)"
 alias -g dc='docker-compose'
 alias -g la='ls -a'
+alias -g ll='ls -l'
 
 # ヒストリの設定
 HISTFILE=~/.zsh_history
@@ -111,4 +112,4 @@ function gifgen() {
 eval "$(starship init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

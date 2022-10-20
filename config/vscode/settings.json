@@ -138,4 +138,5 @@
   "go.toolsManagement.autoUpdate": true,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.accessibilitySupport": "on",
 }
