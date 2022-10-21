@@ -43,9 +43,7 @@
     ".*lintrc": "json"
   },
   "files.exclude": {
-    // エクスプローラーから非表示にするファイル
-    "**/*.map": true,
-    "**/node_modules": true
+    "**/*.map": true
   },
   "files.insertFinalNewline": true, // ファイルの保存時に末尾を改行
   "files.trimFinalNewlines": true, // ファイルの保存時に最終行以降をトリミング
@@ -139,4 +137,5 @@
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
+  "search.useGlobalIgnoreFiles": true,
 }
