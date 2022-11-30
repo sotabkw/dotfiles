@@ -7,7 +7,6 @@
   "editor.autoClosingBrackets": "always",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
   "editor.columnSelection": false,
-  "editor.fontFamily": "Roboto Mono",
   "editor.bracketPairColorization.enabled": true,
   "workbench.preferredLightColorTheme": "Default Dark+",
   "editor.suggestFontSize": 14,
@@ -134,9 +133,10 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Dracula",
   "go.toolsManagement.autoUpdate": true,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
+  "eslint.workingDirectories": ["./project/labbase_frontend"],
+  "workbench.colorTheme": "Blueberry dark theme"
 }
