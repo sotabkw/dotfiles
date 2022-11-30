@@ -42,9 +42,7 @@
     ".*lintrc": "json"
   },
   "files.exclude": {
-    // エクスプローラーから非表示にするファイル
-    "**/*.map": true,
-    "**/node_modules": true
+    "**/*.map": true
   },
   "files.insertFinalNewline": true, // ファイルの保存時に末尾を改行
   "files.trimFinalNewlines": true, // ファイルの保存時に最終行以降をトリミング
@@ -138,5 +136,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
   "eslint.workingDirectories": ["./project/labbase_frontend"],
-  "workbench.colorTheme": "Blueberry dark theme"
+  "workbench.colorTheme": "Blueberry dark theme",
+  "search.useGlobalIgnoreFiles": true
 }
