@@ -1032,7 +1032,7 @@
 				<real>0.11759926378726959</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string></string>
+			<string>/Users/watanabesota/Downloads/黒.png</string>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1047,7 +1047,7 @@
 				<real>1</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.50109403306159417</real>
+			<real>1</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -1493,7 +1493,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.074152260638297871</real>
+			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -2306,9 +2306,9 @@
 				<real>0.11759926378726959</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string>/Users/watanabesota/Downloads/purple-morning-pastel-blur-wallpaper-preview.jpeg</string>
+			<string>/Users/watanabesota/Downloads/黒.png</string>
 			<key>Background Image Mode</key>
-			<integer>2</integer>
+			<integer>0</integer>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2323,7 +2323,7 @@
 				<real>1</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.16460880887681165</real>
+			<real>1</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -2808,7 +2808,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.066323138297872342</real>
+			<real>0.12162566489361702</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -2826,7 +2826,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>6</integer>
+			<integer>2</integer>
 			<key>Working Directory</key>
 			<string>/Users/watanabesota</string>
 		</dict>
