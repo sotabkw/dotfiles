@@ -26,6 +26,9 @@
   "editor.snippetSuggestions": "top", // Emmet などのスニペット候補を優先して表示
   "editor.tabSize": 2, // タブのサイズ変更
   "editor.formatOnType": true, // 入力した行を自動でフォーマット
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
@@ -137,5 +140,6 @@
   "editor.accessibilitySupport": "on",
   "eslint.workingDirectories": ["./project/labbase_frontend"],
   "workbench.colorTheme": "Blueberry dark theme",
-  "search.useGlobalIgnoreFiles": true
+  "search.useGlobalIgnoreFiles": true,
+  "editor.cursorSmoothCaretAnimation": true
 }
