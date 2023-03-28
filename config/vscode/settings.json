@@ -141,5 +141,6 @@
   "eslint.workingDirectories": ["./project/labbase_frontend"],
   "workbench.colorTheme": "Blueberry dark theme",
   "search.useGlobalIgnoreFiles": true,
-  "editor.cursorSmoothCaretAnimation": true
+  "editor.cursorSmoothCaretAnimation": true,
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }
