@@ -65,7 +65,7 @@ alias gct='git commit'
 alias gg='git grep'
 alias ga='git add'
 alias gd='git diff'
-alias gl='git logg'
+alias gl='git log'
 alias gcm='git checkout main'
 alias gcd='git checkout develop'
 alias gfu='git fetch upstream'
@@ -81,6 +81,7 @@ alias gst='git stash'
 alias gsl='git stash list'
 alias gsap='git stash apply'
 alias gca='git commit --amend --no-edit'
+alias gpo='git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"'
 
 # プロンプトカスタマイズ
 PROMPT='
@@ -111,6 +112,7 @@ function gifgen() {
 
 eval "$(starship init zsh)"
 
+
 # bun completions
 [ -s "/Users/watanabesota/.bun/_bun" ] && source "/Users/watanabesota/.bun/_bun"
 
@@ -121,4 +123,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
-. "$HOME/.cargo/env"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc'; fi
