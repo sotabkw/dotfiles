@@ -27,10 +27,18 @@
   "editor.tabSize": 2, // タブのサイズ変更
   "editor.formatOnType": true, // 入力した行を自動でフォーマット
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
   },
   "[go]": {
     "editor.defaultFormatter": "golang.go"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2, // インデントレベルは「2」
+    "editor.formatOnPaste": false, // ペースト時に自動整形を行わない
+    "editor.formatOnType": false // 入力後に自動整形を行わない
   },
   "editor.wordWrap": "on", // エディターの幅で折り返し
   "emmet.showSuggestionsAsSnippets": true, // Emmet の候補を表示
@@ -117,10 +125,6 @@
     // 行の折り返し表示
     "editor.wordWrap": "off"
   },
-  "[python]": {
-    // 1つのタブに相当する半角スペースの数
-    "editor.tabSize": 4
-  },
   "[tsv]": {
     // Tabキーで半角スペースを挿入
     "editor.insertSpaces": false,
@@ -133,14 +137,23 @@
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.iconTheme": "material-icon-theme",
   "go.toolsManagement.autoUpdate": true,
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
   "eslint.workingDirectories": ["./project/labbase_frontend"],
-  "workbench.colorTheme": "Blueberry dark theme",
+  "workbench.colorTheme": "LaserWave",
   "search.useGlobalIgnoreFiles": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  "javascript.updateImportsOnFileMove.enabled": "always"
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "settingsSync.ignoredExtensions": [],
+  "cSpell.languageSettings": [],
+  "go.goroot": "/Users/sota_watanabe/.anyenv/envs/goenv/versions/1.21.0",
+  "go.gopath": "/Users/sota_watanabe/go/1.21.0",
+  "terminal.integrated.shellArgs.linux": ["-l"],
+  "redhat.telemetry.enabled": true
 }
