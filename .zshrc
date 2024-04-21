@@ -65,7 +65,7 @@ alias gct='git commit'
 alias gg='git grep'
 alias ga='git add'
 alias gd='git diff'
-alias gl='git log'
+alias gl='git log --graph --all --format="%x09%C(cyan bold)%an%Creset%x09%C(yellow)%h%Creset %C(magenta reverse)%d%Creset %s"'
 alias gcm='git checkout main'
 alias gcd='git checkout develop'
 alias gfu='git fetch upstream'
@@ -89,7 +89,7 @@ PROMPT='
 %F{yellow}$%f '
 
 
-# vscode code コマンド適用 
+# vscode code コマンド適用
 function code {
     if [[ $# = 0 ]]
     then
