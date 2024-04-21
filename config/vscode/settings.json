@@ -2,7 +2,6 @@
   "python.pythonPath": "/usr/bin/python3",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
-  "diffEditor.ignoreTrimWhitespace": false,
   "git.autofetch": true,
   "editor.autoClosingBrackets": "always",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
@@ -39,8 +38,7 @@
     "editor.tabSize": 2, // インデントレベルは「2」
     "editor.formatOnPaste": false, // ペースト時に自動整形を行わない
     "editor.formatOnType": false // 入力後に自動整形を行わない
-  },
-  "editor.wordWrap": "on", // エディターの幅で折り返し
+  }, // エディターの幅で折り返し
   "emmet.showSuggestionsAsSnippets": true, // Emmet の候補を表示
   "emmet.triggerExpansionOnTab": true, // TAB キーで Emmet を展開できるようにする
   "emmet.variables": {
@@ -142,18 +140,40 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
   "eslint.workingDirectories": ["./project/labbase_frontend"],
-  "workbench.colorTheme": "LaserWave",
   "search.useGlobalIgnoreFiles": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
+    "FIG_NEW_SESSION": "1",
+    "CW_NEW_SESSION": "1"
   },
   "settingsSync.ignoredExtensions": [],
   "cSpell.languageSettings": [],
-  "go.goroot": "/Users/sota_watanabe/.anyenv/envs/goenv/versions/1.21.0",
-  "go.gopath": "/Users/sota_watanabe/go/1.21.0",
+  "go.goroot": "/Users/sota.watanabe/.anyenv/envs/goenv/versions/1.21.0",
+  "go.gopath": "/Users/sota.watanabe/go/1.21.0",
   "terminal.integrated.shellArgs.linux": ["-l"],
-  "redhat.telemetry.enabled": true
+  "redhat.telemetry.enabled": true,
+  "workbench.colorTheme": "Theme Flat",
+  "audioCues.lineHasError": "off",
+  "audioCues.chatResponsePending": "off",
+  "audioCues.diffLineDeleted": "off",
+  "audioCues.diffLineModified": "off",
+  "audioCues.debouncePositionChanges": true,
+  "audioCues.diffLineInserted": "off",
+  "audioCues.lineHasBreakpoint": "off",
+  "audioCues.lineHasInlineSuggestion": "off",
+  "audioCues.lineHasFoldedArea": "off",
+  "audioCues.noInlayHints": "off",
+  "audioCues.notebookCellCompleted": "off",
+  "audioCues.notebookCellFailed": "off",
+  "audioCues.onDebugBreak": "off",
+  "audioCues.taskCompleted": "off",
+  "audioCues.taskFailed": "off",
+  "audioCues.terminalCommandFailed": "off",
+  "audioCues.terminalQuickFix": "off",
+  "audioCues.volume": 0,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false
 }

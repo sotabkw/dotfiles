@@ -1,5 +1,5 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 eval "$(anyenv init -)"
 alias -g dc='docker-compose'
 alias -g la='ls -a'
@@ -81,7 +81,7 @@ alias gst='git stash'
 alias gsl='git stash list'
 alias gsap='git stash apply'
 alias gca='git commit --amend --no-edit'
-alias gpo='git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"'
+alias gpo='git push --set-upstream origin "$(git branch --show-current)"'
 
 # プロンプトカスタマイズ
 PROMPT='
@@ -120,12 +120,15 @@ eval "$(starship init zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
+
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
