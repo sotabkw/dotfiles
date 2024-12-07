@@ -29,9 +29,6 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
-  },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
@@ -145,15 +142,20 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1",
-    "CW_NEW_SESSION": "1"
+    "CW_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
   },
   "settingsSync.ignoredExtensions": [],
   "cSpell.languageSettings": [],
-  "go.goroot": "/Users/sota.watanabe/.anyenv/envs/goenv/versions/1.21.0",
-  "go.gopath": "/Users/sota.watanabe/go/1.21.0",
+  "go.goroot": "/Users/sota.watanabe/.anyenv/envs/goenv/versions/1.23.3",
+  "go.gopath": "/Users/sota.watanabe/go/1.23.3",
+  "go.formatTool": "gofmt",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
   "terminal.integrated.shellArgs.linux": ["-l"],
   "redhat.telemetry.enabled": true,
-  "workbench.colorTheme": "Theme Flat",
+  "workbench.colorTheme": "Theme Mix",
   "audioCues.lineHasError": "off",
   "audioCues.chatResponsePending": "off",
   "audioCues.diffLineDeleted": "off",
@@ -172,8 +174,20 @@
   "audioCues.terminalCommandFailed": "off",
   "audioCues.terminalQuickFix": "off",
   "audioCues.volume": 0,
-  "diffEditor.ignoreTrimWhitespace": false,
   "workbench.iconTheme": "material-icon-theme",
   "git.enableSmartCommit": true,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "git.ignoreRebaseWarning": true,
+  "gitlens.ai.experimental.model": "openai:gpt-4o",
+  "gitlens.integrations.enabled": true,
+  // VSCodeからGitHub Enterprise(GHE)のリンクをコピーするときに、リンクをGitHubのリンクに変換する
+  // https://zenn.dev/yukyan/articles/b5b2ba88a3f7fa
+  "gitlens.remotes": [
+    {
+      "domain": "github.dena.jp",
+      "type": "GitHub"
+    }
+  ],
+  "security.workspace.trust.untrustedFiles": "open"
 }
