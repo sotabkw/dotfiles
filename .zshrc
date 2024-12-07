@@ -151,3 +151,36 @@ zle -N select-git-switch
 bindkey "^g" select-git-switch # 「control + G」で実行
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:$(go env GOPATH)/bin
+
+delete_by_extension() {
+    if [[ -z "$1" ]]; then
+        echo "使い方: delete_by_extension <拡張子>"
+        echo "例: delete_by_extension txt"
+        return 1
+    fi
+
+    local ext="$1"
+    local files=(*."$ext")
+
+    if [[ -z "${files[@]}" || "${files[@]}" == "*.$ext" ]]; then
+        echo "拡張子 .$ext のファイルは見つかりませんでした。"
+        return 0
+    fi
+
+    echo "以下のファイルが削除されます:"
+    for file in "${files[@]}"; do
+        echo "$file"
+    done
+
+    echo "これらのファイルを削除してもよろしいですか？ (y/n)"
+    read -r confirmation
+    if [[ "$confirmation" == "y" ]]; then
+        rm -- "${files[@]}"
+        echo "拡張子 .$ext のファイルを削除しました。"
+    else
+        echo "削除をキャンセルしました。"
+    fi
+}
+
+alias del-ext=delete_by_extension
+
