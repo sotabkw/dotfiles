@@ -1,0 +1,9 @@
+ClemensPeters.format-json
+esbenp.prettier-vscode
+GitHub.copilot
+GitHub.copilot-chat
+golang.go
+MS-CEINTL.vscode-language-pack-ja
+ms-vscode-remote.remote-containers
+tal7aouy.theme
+usernamehw.errorlens
