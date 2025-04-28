@@ -37,7 +37,3 @@ cask "fig"
 cask "ghostty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
-vscode "amazonwebservices.codewhisperer-for-command-line-companion"
-vscode "golang.go"
-vscode "ms-ceintl.vscode-language-pack-ja"
-vscode "ms-vscode-remote.remote-containers"

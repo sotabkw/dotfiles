@@ -102,15 +102,6 @@ function code {
     fi
 }
 
-function gifgen() {
-  if [ $# -lt 3 ]; then
-    command ffmpeg -i $1 -filter_complex "[0:v] fps=10,scale=640:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" $2
-  else
-    command ffmpeg -i $1 -filter_complex "[0:v] fps=10,scale=$3:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" $2
-  fi
-}
-
-
 eval "$(starship init zsh)"
 
 
@@ -134,22 +125,6 @@ if [ -f '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 # Q post block. Keep at the bottom of this file.
 export PATH=$PATH:/Users/sota.watanabe/Library/Python/3.12/bin
 
-function select-git-switch() {
-  target_br=$(
-    git branch -a |
-      fzf --exit-0 --layout=reverse --info=hidden --no-multi --preview-window="right,65%" --prompt="CHECKOUT BRANCH > " --preview="echo {} | tr -d ' *' | xargs git lgn --color=always" |
-      head -n 1 |
-      perl -pe "s/\s//g; s/\*//g; s/remotes\/origin\///g"
-  )
-  if [ -n "$target_br" ]; then
-    BUFFER="git switch $target_br"
-    zle accept-line
-  fi
-}
-zle -N select-git-switch
-bindkey "^g" select-git-switch # 「control + G」で実行
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=$PATH:$(go env GOPATH)/bin
 
 delete_by_extension() {
     if [[ -z "$1" ]]; then
