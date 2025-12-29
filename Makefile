@@ -8,6 +8,10 @@ FILES := .zshrc .vimrc .gvimrc .gitconfig
 STARSHIP_CONFIG_SRC := $(DOTFILES_DIR)/starship/starship.toml
 STARSHIP_CONFIG_DST := $(HOME)/.config/starship.toml
 
+# Ghostty 関連の変数
+GHOSTTY_CONFIG_SRC := $(DOTFILES_DIR)/ghostty/config
+GHOSTTY_CONFIG_DST := $(HOME)/.config/ghostty/config
+
 # VS Code 関連の変数
 VSCODE_EXTENSIONS_FILE := $(DOTFILES_DIR)/vscode/extensions.txt
 VSCODE_KEYBINDINGS_DST := $(DOTFILES_DIR)/vscode/keybindings.json
@@ -61,7 +65,14 @@ $(STARSHIP_CONFIG_DST): $(STARSHIP_CONFIG_SRC)
 	@ln -sf "$<" "$@"
 	@echo "Linked: $@"
 
-all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST)
+$(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC)
+	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@mkdir -p "$(shell dirname $@)"
+	@rm -f "$@"
+	@ln -sf "$<" "$@"
+	@echo "Linked: $@"
+
+all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST)
 	@echo "Dotfiles are now linked."
 
 # zsh の設定をリロード
