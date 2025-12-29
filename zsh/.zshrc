@@ -1,5 +1,5 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 # Q pre block. Keep at the top of this file.
 eval "$(anyenv init -)"
 alias -g dc='docker-compose'
@@ -67,7 +67,7 @@ alias gg='git grep'
 alias ga='git add'
 alias gd='git diff'
 alias glog='git log --graph --all --format="%x09%C(cyan bold)%an%Creset%x09%C(yellow)%h%Creset %C(magenta reverse)%d%Creset %s"'
-alias gcm='git checkout main'
+alias gcom='git checkout main'
 alias gcd='git checkout develop'
 alias gfu='git fetch upstream'
 alias gfo='git fetch origin'
@@ -113,12 +113,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sota_watanabe/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
 
@@ -158,5 +152,20 @@ delete_by_extension() {
 
 alias del-ext=delete_by_extension
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+eval "$(~/.local/bin/mise activate zsh)"
+export JQ_COLORS='1;34:1;31:1;32:0;35:0;36:1;33:1;33'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sota.watanabe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sota.watanabe/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc'; fi
+
+# ローカル設定（機密情報など）
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+
+alias yolo="claude --dangerously-skip-permissions"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

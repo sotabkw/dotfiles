@@ -4,6 +4,10 @@ BREWFILE := $(DOTFILES_DIR)/brew/Brewfile
 # 反映させたい設定ファイルのリスト (ホームディレクトリのファイル名)
 FILES := .zshrc .vimrc .gvimrc .gitconfig
 
+# Starship 関連の変数
+STARSHIP_CONFIG_SRC := $(DOTFILES_DIR)/starship/starship.toml
+STARSHIP_CONFIG_DST := $(HOME)/.config/starship.toml
+
 # VS Code 関連の変数
 VSCODE_EXTENSIONS_FILE := $(DOTFILES_DIR)/vscode/extensions.txt
 VSCODE_KEYBINDINGS_DST := $(DOTFILES_DIR)/vscode/keybindings.json
@@ -50,7 +54,14 @@ $(HOME)/.gitconfig: $(DOTFILES_DIR)/git/.gitconfig
 	@ln -sf "$<" "$@"
 	@echo "Linked: $@"
 
-all: $(addprefix $(HOME)/, $(FILES))
+$(STARSHIP_CONFIG_DST): $(STARSHIP_CONFIG_SRC)
+	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@mkdir -p "$(shell dirname $@)"
+	@rm -f "$@"
+	@ln -sf "$<" "$@"
+	@echo "Linked: $@"
+
+all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST)
 	@echo "Dotfiles are now linked."
 
 # zsh の設定をリロード
