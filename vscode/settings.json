@@ -26,8 +26,8 @@
   "editor.tabSize": 2, // タブのサイズ変更
   "editor.formatOnType": true, // 入力した行を自動でフォーマット
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
@@ -136,7 +136,7 @@
   "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
-  "eslint.workingDirectories": ["./project/labbase_frontend"],
+  "eslint.workingDirectories": [],
   "search.useGlobalIgnoreFiles": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -155,25 +155,7 @@
   },
   "terminal.integrated.shellArgs.linux": ["-l"],
   "redhat.telemetry.enabled": true,
-  "workbench.colorTheme": "Theme Mix",
-  "audioCues.lineHasError": "off",
-  "audioCues.chatResponsePending": "off",
-  "audioCues.diffLineDeleted": "off",
-  "audioCues.diffLineModified": "off",
-  "audioCues.debouncePositionChanges": true,
-  "audioCues.diffLineInserted": "off",
-  "audioCues.lineHasBreakpoint": "off",
-  "audioCues.lineHasInlineSuggestion": "off",
-  "audioCues.lineHasFoldedArea": "off",
-  "audioCues.noInlayHints": "off",
-  "audioCues.notebookCellCompleted": "off",
-  "audioCues.notebookCellFailed": "off",
-  "audioCues.onDebugBreak": "off",
-  "audioCues.taskCompleted": "off",
-  "audioCues.taskFailed": "off",
-  "audioCues.terminalCommandFailed": "off",
-  "audioCues.terminalQuickFix": "off",
-  "audioCues.volume": 0,
+  "workbench.colorTheme": "Theme",
   "workbench.iconTheme": "material-icon-theme",
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
@@ -183,11 +165,61 @@
   "gitlens.integrations.enabled": true,
   // VSCodeからGitHub Enterprise(GHE)のリンクをコピーするときに、リンクをGitHubのリンクに変換する
   // https://zenn.dev/yukyan/articles/b5b2ba88a3f7fa
-  "gitlens.remotes": [
-    {
-      "domain": "github.dena.jp",
-      "type": "GitHub"
-    }
-  ],
-  "security.workspace.trust.untrustedFiles": "open"
+  "gitlens.remotes": [],
+  "security.workspace.trust.untrustedFiles": "open",
+  "accessibility.signalOptions.volume": 0,
+  "accessibility.signalOptions.debouncePositionChanges": true,
+  "accessibility.signals.lineHasError": {
+    "sound": "off"
+  },
+  "accessibility.signals.lineHasFoldedArea": {
+    "sound": "off"
+  },
+  "accessibility.signals.lineHasBreakpoint": {
+    "sound": "off"
+  },
+  "accessibility.signals.lineHasInlineSuggestion": {
+    "sound": "off"
+  },
+  "accessibility.signals.terminalQuickFix": {
+    "sound": "off"
+  },
+  "accessibility.signals.onDebugBreak": {
+    "sound": "off"
+  },
+  "accessibility.signals.noInlayHints": {
+    "sound": "off"
+  },
+  "accessibility.signals.taskCompleted": {
+    "sound": "off"
+  },
+  "accessibility.signals.taskFailed": {
+    "sound": "off"
+  },
+  "accessibility.signals.terminalCommandFailed": {
+    "sound": "off"
+  },
+  "accessibility.signals.notebookCellCompleted": {
+    "sound": "off"
+  },
+  "accessibility.signals.notebookCellFailed": {
+    "sound": "off"
+  },
+  "accessibility.signals.diffLineInserted": {
+    "sound": "off"
+  },
+  "accessibility.signals.diffLineDeleted": {
+    "sound": "off"
+  },
+  "accessibility.signals.diffLineModified": {
+    "sound": "off"
+  },
+  "accessibility.signals.progress": {
+    "sound": "off"
+  },
+  "remote.defaultExtensionsIfInstalledLocally": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.vscode-pull-request-github"
+  ]
 }

@@ -24,3 +24,5 @@
 	logn = log --name-status --oneline
 	firstcom = commit --allow-empty -m \"Initial commit\"
 	logg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[submodule]
+	recurse = true

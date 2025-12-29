@@ -1,3 +1,4 @@
+amazonwebservices.codewhisperer-for-command-line-companion
 ClemensPeters.format-json
 esbenp.prettier-vscode
 GitHub.copilot
