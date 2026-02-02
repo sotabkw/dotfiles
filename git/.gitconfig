@@ -26,3 +26,5 @@
 	logg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [submodule]
 	recurse = true
+[url "git@github-dena:"]
+	insteadOf = git@github.com:
