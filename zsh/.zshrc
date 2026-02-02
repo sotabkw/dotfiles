@@ -1,5 +1,7 @@
+
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 # Q pre block. Keep at the top of this file.
 eval "$(anyenv init -)"
 alias -g dc='docker-compose'
@@ -167,6 +169,10 @@ if [ -f '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 
 alias yolo="claude --dangerously-skip-permissions"
 
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+eval "$(direnv hook zsh)"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
