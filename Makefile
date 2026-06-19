@@ -1,6 +1,9 @@
 DOTFILES_DIR := $(HOME)/dotfiles
 BREWFILE := $(DOTFILES_DIR)/brew/Brewfile
 
+# npm グローバルに導入するツール（mise install では再現されないため別途入れる）
+NPM_GLOBALS := @anthropic-ai/claude-code @redocly/cli ccusage
+
 # 反映させたい設定ファイルのリスト (ホームディレクトリのファイル名)
 FILES := .zshrc .vimrc .gvimrc .gitconfig
 
@@ -99,6 +102,13 @@ mise-install:
 	@command -v mise >/dev/null 2>&1 && { echo "Installing mise-managed runtimes..."; mise install; } \
 	  || echo "mise not found, skipping runtime install."
 
+# npm グローバル（claude など）を導入。
+# WHY: mise install は node を入れるが npm グローバルは再現しないため、mise の node 上で別途入れる。
+npm-globals:
+	@command -v mise >/dev/null 2>&1 || { echo "mise not found, skipping npm globals."; exit 0; }
+	@echo "Installing npm global packages: $(NPM_GLOBALS)"
+	@mise exec -- npm install -g $(NPM_GLOBALS)
+
 # 機密・マシン固有の local ファイルを雛形から作成（既存は上書きしない）
 local-files:
 	@test -f "$(ZSHRC_LOCAL_DST)" || \
@@ -164,11 +174,11 @@ vscode: apply-vscode
 	@echo "VS Code setup complete."
 
 # 新しいマシンでこれ一つを実行すれば一通り完了する
-install: install-brew mise-install all local-files vscode
+install: install-brew mise-install npm-globals all local-files vscode
 	@echo ""
 	@echo "セットアップ完了！"
 	@echo "  1. ~/.zshrc.local と ~/.gitconfig-zerocolor に実際の値を記入してください。"
 	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
 
-.PHONY: all install-homebrew install-brew mise-install local-files reload_zsh reload_vim reload clean brew \
+.PHONY: all install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
         apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install
