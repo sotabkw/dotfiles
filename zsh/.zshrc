@@ -148,7 +148,12 @@ delete_by_extension() {
 
 alias del-ext=delete_by_extension
 
-eval "$(~/.local/bin/mise activate zsh)"
+# mise: Homebrew 版は /opt/homebrew/bin、公式インストーラ版は ~/.local/bin に入るため両対応
+if [ -x /opt/homebrew/bin/mise ]; then
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
+elif [ -x "$HOME/.local/bin/mise" ]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
 export JQ_COLORS='1;34:1;31:1;32:0;35:0;36:1;33:1;33'
 
 # The next line updates PATH for the Google Cloud SDK.
