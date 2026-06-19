@@ -17,6 +17,12 @@ VSCODE_EXTENSIONS_FILE := $(DOTFILES_DIR)/vscode/extensions.txt
 VSCODE_KEYBINDINGS_DST := $(DOTFILES_DIR)/vscode/keybindings.json
 VSCODE_SETTINGS_DST := $(DOTFILES_DIR)/vscode/settings.json
 
+# local（機密・マシン固有）ファイルの雛形。コピー先はリポジトリ管理外。
+ZSHRC_LOCAL_SRC := $(DOTFILES_DIR)/zsh/.zshrc.local.example
+ZSHRC_LOCAL_DST := $(HOME)/.zshrc.local
+GITCONFIG_LOCAL_SRC := $(DOTFILES_DIR)/git/.gitconfig-zerocolor.example
+GITCONFIG_LOCAL_DST := $(HOME)/.gitconfig-zerocolor
+
 OS := $(shell uname -s)
 ifeq ($(OS),Darwin) # macOS
     VSCODE_KEYBINDINGS_LINK := $(HOME)/Library/Application Support/Code/User/keybindings.json
@@ -75,6 +81,31 @@ $(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC)
 all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST)
 	@echo "Dotfiles are now linked."
 
+# Homebrew 本体が無ければインストール（新マシン向け）
+install-homebrew:
+	@command -v brew >/dev/null 2>&1 || \
+	  { echo "Installing Homebrew..."; \
+	    /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; }
+
+# Brewfile からパッケージを導入。Homebrew を PATH に通してから bundle する。
+install-brew: install-homebrew
+	@echo "Installing Homebrew packages from $(BREWFILE)..."
+	@eval "$$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"; \
+	  brew bundle --file=$(BREWFILE)
+
+# mise 管理のランタイム（node/go/terraform 等）を導入。
+# WHY: brew で mise を入れただけでは実体は入らず、config に基づく `mise install` が必要。
+mise-install:
+	@command -v mise >/dev/null 2>&1 && { echo "Installing mise-managed runtimes..."; mise install; } \
+	  || echo "mise not found, skipping runtime install."
+
+# 機密・マシン固有の local ファイルを雛形から作成（既存は上書きしない）
+local-files:
+	@test -f "$(ZSHRC_LOCAL_DST)" || \
+	  { cp "$(ZSHRC_LOCAL_SRC)" "$(ZSHRC_LOCAL_DST)"; echo "Created $(ZSHRC_LOCAL_DST) (要編集: 機密値を記入)"; }
+	@test -f "$(GITCONFIG_LOCAL_DST)" || \
+	  { cp "$(GITCONFIG_LOCAL_SRC)" "$(GITCONFIG_LOCAL_DST)"; echo "Created $(GITCONFIG_LOCAL_DST) (要編集)"; }
+
 # zsh の設定をリロード
 reload_zsh:
 	@echo "Reloading zsh configuration..."
@@ -90,7 +121,8 @@ reload: reload_zsh reload_vim
 
 clean:
 	@echo "Removing symbolic links..."
-	@find $(HOME) -maxdepth 1 -type l -name ".zshrc" -o -name ".vimrc" -o -name ".gvimrc" -exec rm {} \;
+	@find $(HOME) -maxdepth 1 -type l \( -name ".zshrc" -o -name ".vimrc" -o -name ".gvimrc" -o -name ".gitconfig" \) -exec rm {} \;
+	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)"
 	@echo "Cleaned."
 
 brew:
@@ -98,19 +130,13 @@ brew:
 	@brew bundle --file=$(BREWFILE)
 	@brew cleanup
 
-install-brew:
-	command -v brew >/dev/null 2>&1 || \
-	( echo "Homebrew is not installed. Please install it from https://brew.sh/"; exit 1; )
-	@echo "Installing Homebrew packages and casks from $(BREWFILE)..."
-	@brew bundle --file=$(BREWFILE)
-
 apply-vscode-extensions:
 	@echo "Applying VS Code extensions from $(VSCODE_EXTENSIONS_FILE)..."
-	command -v code >/dev/null 2>&1 || \
-	{ echo "Visual Studio Codeの 'code' コマンドが見つかりません。"; exit 1; }
-	test -f $(VSCODE_EXTENSIONS_FILE) || \
-	{ echo "$(VSCODE_EXTENSIONS_FILE) が存在しません。'make list-vscode-extensions' を実行して作成してください。"; exit 1; }
-	while IFS= read -r extension; do \
+	@command -v code >/dev/null 2>&1 || \
+	{ echo "'code' コマンドが見つからないため拡張のインストールをスキップします（VS Code 起動後に Cmd+Shift+P > Install 'code' command でPATHを通すと適用可能）。"; exit 0; }
+	@test -f $(VSCODE_EXTENSIONS_FILE) || \
+	{ echo "$(VSCODE_EXTENSIONS_FILE) が存在しません。'make list-vscode-extensions' を実行して作成してください。"; exit 0; }
+	@while IFS= read -r extension; do \
         echo "Applying VS Code extension: $$extension"; \
         code --install-extension "$$extension"; \
     done < $(VSCODE_EXTENSIONS_FILE)
@@ -134,10 +160,15 @@ list-vscode-extensions:
 	{ echo "Visual Studio Codeの 'code' コマンドが見つかりません。"; exit 1; }
 	code --list-extensions > $(VSCODE_EXTENSIONS_FILE)
 
-vscode: list-vscode-extensions apply-vscode
+vscode: apply-vscode
 	@echo "VS Code setup complete."
 
-install: install-brew all vscode
-	@echo "Dotfiles and Homebrew packages installation complete!"
+# 新しいマシンでこれ一つを実行すれば一通り完了する
+install: install-brew mise-install all local-files vscode
+	@echo ""
+	@echo "セットアップ完了！"
+	@echo "  1. ~/.zshrc.local と ~/.gitconfig-zerocolor に実際の値を記入してください。"
+	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
 
-.PHONY: all reload_zsh reload_vim reload clean install install-brew brew
+.PHONY: all install-homebrew install-brew mise-install local-files reload_zsh reload_vim reload clean brew \
+        apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install

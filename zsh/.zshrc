@@ -2,8 +2,6 @@
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 
-# Q pre block. Keep at the top of this file.
-eval "$(anyenv init -)"
 alias -g dc='docker-compose'
 alias -g la='ls -a'
 alias -g ll='ls -l'
@@ -26,9 +24,9 @@ setopt share_history
 
 # 補完機能を有効にする
 autoload -Uz compinit
-compinit -u
-if [ -e /usr/local/share/zsh-completions ]; then
-  fpath=(/usr/local/share/zsh-completions $fpath)
+compinit
+if [ -e /opt/homebrew/share/zsh-completions ]; then
+  fpath=(/opt/homebrew/share/zsh-completions $fpath)
 fi
 
 # 補完で小文字でも大文字にマッチさせる
@@ -78,7 +76,6 @@ alias gmud='git merge upstream/develop'
 alias gmom='git merge origin/master'
 alias gcm='git commit -m'
 alias gac="git add . && git commit -m" # + commit message
-alias gpo='git push origin'
 alias gpom='git push origin master'
 alias gst='git stash'
 alias gsl='git stash list'
@@ -108,7 +105,7 @@ eval "$(starship init zsh)"
 
 
 # bun completions
-[ -s "/Users/watanabesota/.bun/_bun" ] && source "/Users/watanabesota/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -116,10 +113,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 
-[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
-
-# Q post block. Keep at the bottom of this file.
-export PATH=$PATH:/Users/sota.watanabe/Library/Python/3.12/bin
+export PATH="$PATH:$HOME/Library/Python/3.12/bin"
 
 
 delete_by_extension() {
@@ -158,10 +152,10 @@ eval "$(~/.local/bin/mise activate zsh)"
 export JQ_COLORS='1;34:1;31:1;32:0;35:0;36:1;33:1;33'
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sota.watanabe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sota.watanabe/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # ローカル設定（機密情報など）
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
@@ -169,9 +163,6 @@ if [ -f '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 
 alias yolo="claude --dangerously-skip-permissions"
 alias ccauto='claude --enable-auto-mode'
-
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
-
 
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

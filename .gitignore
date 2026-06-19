@@ -1,0 +1,9 @@
+# ローカル上書き・機密情報（home 直下に手動作成。リポジトリ管理外）
+.zshrc.local
+.gitconfig-zerocolor
+
+# Claude Code のローカル設定（マシン固有のため共有しない）
+.claude/settings.local.json
+
+# OS
+.DS_Store

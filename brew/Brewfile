@@ -1,8 +1,30 @@
 tap "go-delve/delve"
-# All in one for **env
-brew "anyenv"
+
+# === Version / runtime management ===
+# node / go / terraform / gcloud などを一括管理（バージョン管理は mise に一本化）
+brew "mise"
+
+# === CLI tools ===
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Cat alternative written in Go
+brew "gat"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# GitHub CLI（.gitconfig の credential helper が依存。無いと git 認証が壊れる）
+brew "gh"
+# Per-directory environment variables（.zshrc で hook している）
+brew "direnv"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Development Kit for Java（.zshrc で PATH を通している）
+brew "openjdk"
+
+# === Containers / VM ===
 # Linux virtual machines
 brew "lima"
 # Container runtimes on MacOS (and Linux) with minimal setup
@@ -11,28 +33,20 @@ brew "colima"
 brew "docker"
 # Isolated development environments using Docker
 brew "docker-compose"
-# Command-line fuzzy finder written in Go
-brew "fzf"
-# Cat alternative written in Go
-brew "gat"
+# Generic machine emulator and virtualizer
+brew "qemu"
+
+# === Network ===
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Lightweight and flexible command-line JSON processor
-brew "jq"
-# Node version management
-brew "n"
-# Generic machine emulator and virtualizer
-brew "qemu"
-# Cross-shell prompt for astronauts
-brew "starship"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
+
+# === Casks ===
+# Code editor（vscode/ 配下の設定・拡張を適用する前提）
+cask "visual-studio-code"
 # Universal database tool and SQL client
 cask "dbeaver-community"
-# Reimagine your terminal
-cask "fig"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer

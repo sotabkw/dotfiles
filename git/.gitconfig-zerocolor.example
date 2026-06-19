@@ -1,0 +1,13 @@
+# 仕事用（ZeroColor 配下）の git 設定テンプレート。
+# このファイルをコピーして ~/.gitconfig-zerocolor を作成する。
+#   cp ~/dotfiles/git/.gitconfig-zerocolor.example ~/.gitconfig-zerocolor
+# .gitconfig の [includeIf "gitdir:~/ZeroColor/"] から読み込まれる（リポジトリ管理外）。
+# 仕事用のメールアドレスを使う場合は [user] も追記する。
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+# 例: 仕事用コミットの user を分けたい場合
+# [user]
+# 	name = "Your Name"
+# 	email = "you@example.com"
