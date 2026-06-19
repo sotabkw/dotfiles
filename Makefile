@@ -106,8 +106,10 @@ mise-install:
 # WHY: mise install は node を入れるが npm グローバルは再現しないため、mise の node 上で別途入れる。
 npm-globals:
 	@command -v mise >/dev/null 2>&1 || { echo "mise not found, skipping npm globals."; exit 0; }
+	@echo "Setting node (lts) as the global default via mise..."
+	@mise use -g node@lts
 	@echo "Installing npm global packages: $(NPM_GLOBALS)"
-	@mise exec -- npm install -g $(NPM_GLOBALS)
+	@mise exec node@lts -- npm install -g $(NPM_GLOBALS)
 
 # 機密・マシン固有の local ファイルを雛形から作成（既存は上書きしない）
 local-files:
