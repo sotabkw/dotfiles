@@ -168,6 +168,7 @@ if [ -f '/Users/sota.watanabe/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 
 
 alias yolo="claude --dangerously-skip-permissions"
+alias ccauto='claude --enable-auto-mode'
 
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
@@ -176,3 +177,4 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
 eval "$(direnv hook zsh)"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+

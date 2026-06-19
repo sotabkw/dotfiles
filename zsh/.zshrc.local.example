@@ -1,0 +1,14 @@
+# マシン固有・機密情報を含む環境変数のテンプレート。
+# このファイルをコピーして ~/.zshrc.local を作成し、実際の値を埋める。
+#   cp ~/dotfiles/zsh/.zshrc.local.example ~/.zshrc.local
+# ~/.zshrc.local はリポジトリ管理外（.zshrc が末尾で source する）。
+
+# Google Cloud (gcloud / Vertex AI)
+export GOOGLE_CLOUD_PROJECT=""
+export GOOGLE_CLOUD_LOCATION=""
+export GOOGLE_GENAI_USE_VERTEXAI=true
+
+# JIRA (Atlassian API トークンは https://id.atlassian.com/manage-profile/security/api-tokens で発行)
+export JIRA_URL=""
+export JIRA_USERNAME=""
+export JIRA_API_TOKEN=""
