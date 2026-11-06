@@ -17,7 +17,8 @@ cd ~/dotfiles && make install
 
 # 3. 機密情報・マシン固有の環境変数を手動作成（リポジトリ管理外）
 cp ~/dotfiles/zsh/.zshrc.local.example ~/.zshrc.local           # JIRA / gcloud などの値を記入
-cp ~/dotfiles/git/.gitconfig-zerocolor.example ~/.gitconfig-zerocolor   # 仕事用 git 設定
+cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git 設定
+# ~/DeNA/ 配下用 ~/.gitconfig-dena、~/ZeroColor/ 配下用 ~/.gitconfig-zerocolor も同じ雛形から作成（[user] email を記入）
 
 # 4. 以後この dotfiles に push したくなったら GitHub 認証を通す（どちらか）。
 #    - HTTPS: gh auth login（.gitconfig の credential helper が gh を使う。gh は Brewfile で導入済み）
@@ -29,10 +30,11 @@ cp ~/dotfiles/git/.gitconfig-zerocolor.example ~/.gitconfig-zerocolor   # 仕事
 | ディレクトリ | 内容 |
 |---|---|
 | `zsh/` | `.zshrc`（`.zshrc.local` で機密を分離） |
-| `git/` | `.gitconfig`（`~/ZeroColor/` 配下は `.gitconfig-zerocolor` を include） |
+| `git/` | `.gitconfig`（`~/work/` 配下は `.gitconfig-work` を include） |
 | `vim/` | `.vimrc` / `.gvimrc` |
 | `brew/` | `Brewfile`（バージョン管理は mise に一本化） |
 | `ghostty/` | Ghostty 設定 |
+| `cmux/` | cmux 設定（`~/.config/cmux/cmux.json`、JSONC） |
 | `starship/` | プロンプト設定 |
 | `vscode/` | 拡張機能リスト・keybindings・settings |
 | `config/iterm2/` | iTerm2 設定（バックアップ用。通常は Ghostty を使用） |

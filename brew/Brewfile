@@ -1,4 +1,5 @@
 tap "go-delve/delve"
+tap "ariga/tap"
 
 # === Version / runtime management ===
 # node / go / terraform / gcloud などを一括管理（バージョン管理は mise に一本化）
@@ -23,6 +24,14 @@ brew "direnv"
 brew "starship"
 # Development Kit for Java（.zshrc で PATH を通している）
 brew "openjdk"
+# PostgreSQL クライアント psql（keg-only。.zshrc で PATH を通している）
+brew "libpq"
+# Python パッケージ/プロジェクト管理
+brew "uv"
+# Temporal CLI
+brew "temporal"
+# DB スキーマ管理
+brew "ariga/tap/atlas"
 
 # === Containers / VM ===
 # Linux virtual machines
@@ -33,6 +42,8 @@ brew "colima"
 brew "docker"
 # Isolated development environments using Docker
 brew "docker-compose"
+# Docker buildx プラグイン
+brew "docker-buildx"
 # Generic machine emulator and virtualizer
 brew "qemu"
 
@@ -51,3 +62,7 @@ cask "dbeaver-community"
 cask "ghostty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+# AI コーディングエージェント向けターミナル（cmux/ 配下の設定を適用する前提）
+cask "cmux"
+# ClickHouse
+cask "clickhouse"

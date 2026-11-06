@@ -2,9 +2,9 @@
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 
-alias -g dc='docker-compose'
-alias -g la='ls -a'
-alias -g ll='ls -l'
+alias dc='docker-compose'
+alias la='ls -a'
+alias ll='ls -l'
 
 # ヒストリの設定
 HISTFILE=~/.zsh_history
@@ -23,11 +23,12 @@ setopt hist_ignore_all_dups
 setopt share_history
 
 # 補完機能を有効にする
-autoload -Uz compinit
-compinit
+# fpath は compinit より前に追加しないと補完定義が読み込まれない
 if [ -e /opt/homebrew/share/zsh-completions ]; then
   fpath=(/opt/homebrew/share/zsh-completions $fpath)
 fi
+autoload -Uz compinit
+compinit
 
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -47,16 +48,6 @@ setopt no_beep
 # ディレクトリスタック
 DIRSTACKSIZE=100
 setopt AUTO_PUSHD
-
-# git
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
 
 alias g='git'
 alias gs='git status'
@@ -83,26 +74,7 @@ alias gsap='git stash apply'
 alias gca='git commit --amend --no-edit'
 alias gpo='git push --set-upstream origin "$(git branch --show-current)"'
 
-# プロンプトカスタマイズ
-PROMPT='
-[%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
-%F{yellow}$%f '
-
-
-# # vscode code コマンド適用
-# function code {
-#     if [[ $# = 0 ]]
-#     then
-#         open -a "Visual Studio Code"
-#     else
-#         local argPath="$1"
-#         [[ $1 = /* ]] && argPath="$1" || argPath="$PWD/${1#./}"
-#         open -a "Visual Studio Code" "$argPath"
-#     fi
-# }
-
 eval "$(starship init zsh)"
-
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -111,10 +83,7 @@ eval "$(starship init zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
-
 export PATH="$PATH:$HOME/Library/Python/3.12/bin"
-
 
 delete_by_extension() {
     if [[ -z "$1" ]]; then
@@ -165,12 +134,16 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # ローカル設定（機密情報など）
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-
 alias yolo="claude --dangerously-skip-permissions"
 alias ccauto='claude --enable-auto-mode'
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
 eval "$(direnv hook zsh)"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# libpq (keg-only): provides psql for db access
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
+# gcloud 用 Python を mise の 3.11 系に固定（パッチ版を直指定すると mise 更新で消えるため 3.11 エイリアスを参照）
+export CLOUDSDK_PYTHON="${HOME}/.local/share/mise/installs/python/3.11/bin/python3"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

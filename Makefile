@@ -15,6 +15,10 @@ STARSHIP_CONFIG_DST := $(HOME)/.config/starship.toml
 GHOSTTY_CONFIG_SRC := $(DOTFILES_DIR)/ghostty/config
 GHOSTTY_CONFIG_DST := $(HOME)/.config/ghostty/config
 
+# cmux 関連の変数
+CMUX_CONFIG_SRC := $(DOTFILES_DIR)/cmux/cmux.json
+CMUX_CONFIG_DST := $(HOME)/.config/cmux/cmux.json
+
 # VS Code 関連の変数
 VSCODE_EXTENSIONS_FILE := $(DOTFILES_DIR)/vscode/extensions.txt
 VSCODE_KEYBINDINGS_DST := $(DOTFILES_DIR)/vscode/keybindings.json
@@ -23,8 +27,8 @@ VSCODE_SETTINGS_DST := $(DOTFILES_DIR)/vscode/settings.json
 # local（機密・マシン固有）ファイルの雛形。コピー先はリポジトリ管理外。
 ZSHRC_LOCAL_SRC := $(DOTFILES_DIR)/zsh/.zshrc.local.example
 ZSHRC_LOCAL_DST := $(HOME)/.zshrc.local
-GITCONFIG_LOCAL_SRC := $(DOTFILES_DIR)/git/.gitconfig-zerocolor.example
-GITCONFIG_LOCAL_DST := $(HOME)/.gitconfig-zerocolor
+GITCONFIG_LOCAL_SRC := $(DOTFILES_DIR)/git/.gitconfig-work.example
+GITCONFIG_LOCAL_DST := $(HOME)/.gitconfig-work
 
 OS := $(shell uname -s)
 ifeq ($(OS),Darwin) # macOS
@@ -81,7 +85,14 @@ $(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC)
 	@ln -sf "$<" "$@"
 	@echo "Linked: $@"
 
-all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST)
+$(CMUX_CONFIG_DST): $(CMUX_CONFIG_SRC)
+	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@mkdir -p "$(shell dirname $@)"
+	@rm -f "$@"
+	@ln -sf "$<" "$@"
+	@echo "Linked: $@"
+
+all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST) $(CMUX_CONFIG_DST)
 	@echo "Dotfiles are now linked."
 
 # Homebrew 本体が無ければインストール（新マシン向け）
@@ -134,7 +145,7 @@ reload: reload_zsh reload_vim
 clean:
 	@echo "Removing symbolic links..."
 	@find $(HOME) -maxdepth 1 -type l \( -name ".zshrc" -o -name ".vimrc" -o -name ".gvimrc" -o -name ".gitconfig" \) -exec rm {} \;
-	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)"
+	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)"
 	@echo "Cleaned."
 
 brew:
@@ -179,7 +190,7 @@ vscode: apply-vscode
 install: install-brew mise-install npm-globals all local-files vscode
 	@echo ""
 	@echo "セットアップ完了！"
-	@echo "  1. ~/.zshrc.local と ~/.gitconfig-zerocolor に実際の値を記入してください。"
+	@echo "  1. ~/.zshrc.local と ~/.gitconfig-work に実際の値を記入してください。"
 	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
 
 .PHONY: all install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \

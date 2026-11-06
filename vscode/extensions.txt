@@ -1,10 +1,7 @@
-amazonwebservices.codewhisperer-for-command-line-companion
-ClemensPeters.format-json
+clemenspeters.format-json
 esbenp.prettier-vscode
-GitHub.copilot
-GitHub.copilot-chat
 golang.go
-MS-CEINTL.vscode-language-pack-ja
+ms-ceintl.vscode-language-pack-ja
 ms-vscode-remote.remote-containers
 tal7aouy.theme
 usernamehw.errorlens

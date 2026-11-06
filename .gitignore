@@ -1,6 +1,8 @@
 # ローカル上書き・機密情報（home 直下に手動作成。リポジトリ管理外）
 .zshrc.local
+.gitconfig-work
 .gitconfig-zerocolor
+.gitconfig-dena
 
 # Claude Code のローカル設定（マシン固有のため共有しない）
 .claude/settings.local.json

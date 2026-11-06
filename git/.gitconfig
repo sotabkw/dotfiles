@@ -32,5 +32,9 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[includeIf "gitdir:~/work/"]
+	path = .gitconfig-work
+[includeIf "gitdir:~/DeNA/"]
+	path = ~/.gitconfig-dena
 [includeIf "gitdir:~/ZeroColor/"]
-	path = .gitconfig-zerocolor
+	path = ~/.gitconfig-zerocolor

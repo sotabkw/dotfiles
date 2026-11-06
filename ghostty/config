@@ -1,11 +1,11 @@
 # Theme
-theme = Catppuccin Mocha
+theme = TokyoNight Night
 
 # ウィンドウを最大化で開く
 maximize = true
 
-# Quick Terminal（Cmd+F12 でトグル）
-keybind = global:cmd+f12=toggle_quick_terminal
+# Quick Terminal（Cmd+F11 でトグル）
+keybind = global:cmd+f11=toggle_quick_terminal
 
 # Shift+Enter で改行（コマンド実行せず）
 keybind = shift+enter=text:\n
@@ -15,31 +15,35 @@ quick-terminal-animation-duration = 0.2
 quick-terminal-autohide = true
 
 # Font
-font-family = JetBrainsMonoNL Nerd Font Mono
-font-feature = -dlig
-font-size = 17
+# font-family = JetBrainsMonoNL Nerd Font Mono
+# font-family = Hiragino Sans
+# font-family = Apple Color Emoji
+# font-feature = -dlig
+font-size = 18
 
-font-style-bold = false
-font-style-italic = false
-font-style-bold-italic = false
+# font-style-bold = false
+# font-style-italic = false
+# font-style-bold-italic = false
 
-font-thicken = true
-font-thicken-strength = 1
+# font-thicken = true
+# font-thicken-strength = 1
 
-alpha-blending = linear
+# alpha-blending = linear
 
-adjust-cell-width = 0
-adjust-cell-height = 2
+# adjust-cell-width = 0
+# adjust-cell-height = 2
 
 # macOS
 macos-titlebar-style = hidden
 macos-window-shadow = false
+macos-option-as-alt = true
 
 # Window
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
-background-opacity = 0.85
+background-opacity = 0.8
+background-blur-radius = 20
 
 # Shell
 shell-integration-features = no-cursor
