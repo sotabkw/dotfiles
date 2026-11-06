@@ -147,8 +147,6 @@
   },
   "settingsSync.ignoredExtensions": [],
   "cSpell.languageSettings": [],
-  "go.goroot": "/Users/sota.watanabe/.anyenv/envs/goenv/versions/1.23.3",
-  "go.gopath": "/Users/sota.watanabe/go/1.23.3",
   "go.formatTool": "gofmt",
   "[go]": {
     "editor.defaultFormatter": "golang.go"

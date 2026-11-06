@@ -1,4 +1,9 @@
 DOTFILES_DIR := $(HOME)/dotfiles
+.DEFAULT_GOAL := all
+
+# WHY: 新Macでは Homebrew 導入直後も親シェルの PATH に /opt/homebrew/bin が無く、
+# 後続ターゲット（mise-install 等）が mise を見つけられずスキップされるため、make 全体で PATH に足す。
+export PATH := /opt/homebrew/bin:/usr/local/bin:$(PATH)
 BREWFILE := $(DOTFILES_DIR)/brew/Brewfile
 
 # npm グローバルに導入するツール（mise install では再現されないため別途入れる）
@@ -18,6 +23,10 @@ GHOSTTY_CONFIG_DST := $(HOME)/.config/ghostty/config
 # cmux 関連の変数
 CMUX_CONFIG_SRC := $(DOTFILES_DIR)/cmux/cmux.json
 CMUX_CONFIG_DST := $(HOME)/.config/cmux/cmux.json
+
+# mise 関連の変数
+MISE_CONFIG_SRC := $(DOTFILES_DIR)/mise/config.toml
+MISE_CONFIG_DST := $(HOME)/.config/mise/config.toml
 
 # VS Code 関連の変数
 VSCODE_EXTENSIONS_FILE := $(DOTFILES_DIR)/vscode/extensions.txt
@@ -42,57 +51,60 @@ else # Windows (未検証)
     VSCODE_SETTINGS_LINK := $(APPDATA)/Code/User/settings.json
 endif
 
-# 各設定ファイルのリンク処理を個別に記述
-$(HOME)/.zshrc: $(DOTFILES_DIR)/zsh/.zshrc
+# 各設定ファイルのリンク処理を個別に記述（FORCE: リンク先が実ファイルで新しくても mtime 判定でスキップさせない）
+$(HOME)/.zshrc: $(DOTFILES_DIR)/zsh/.zshrc FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@test -e "$@" || cp "$<" "$@"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(HOME)/.vimrc: $(DOTFILES_DIR)/vim/.vimrc
+$(HOME)/.vimrc: $(DOTFILES_DIR)/vim/.vimrc FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@test -e "$@" || cp "$<" "$@"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(HOME)/.gvimrc: $(DOTFILES_DIR)/vim/.gvimrc
+$(HOME)/.gvimrc: $(DOTFILES_DIR)/vim/.gvimrc FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@test -e "$@" || cp "$<" "$@"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(HOME)/.gitconfig: $(DOTFILES_DIR)/git/.gitconfig
+$(HOME)/.gitconfig: $(DOTFILES_DIR)/git/.gitconfig FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@test -e "$@" || cp "$<" "$@"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(STARSHIP_CONFIG_DST): $(STARSHIP_CONFIG_SRC)
+$(STARSHIP_CONFIG_DST): $(STARSHIP_CONFIG_SRC) FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC)
+$(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC) FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-$(CMUX_CONFIG_DST): $(CMUX_CONFIG_SRC)
+$(CMUX_CONFIG_DST): $(CMUX_CONFIG_SRC) FORCE
 	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@rm -f "$@"
-	@ln -sf "$<" "$@"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
 	@echo "Linked: $@"
 
-all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST) $(CMUX_CONFIG_DST)
+$(MISE_CONFIG_DST): $(MISE_CONFIG_SRC) FORCE
+	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@mkdir -p "$(shell dirname $@)"
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@ln -sfn "$<" "$@"
+	@echo "Linked: $@"
+
+all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST) $(CMUX_CONFIG_DST) $(MISE_CONFIG_DST)
 	@echo "Dotfiles are now linked."
 
 # Homebrew 本体が無ければインストール（新マシン向け）
@@ -110,8 +122,8 @@ install-brew: install-homebrew
 # mise 管理のランタイム（node/go/terraform 等）を導入。
 # WHY: brew で mise を入れただけでは実体は入らず、config に基づく `mise install` が必要。
 mise-install:
-	@command -v mise >/dev/null 2>&1 && { echo "Installing mise-managed runtimes..."; mise install; } \
-	  || echo "mise not found, skipping runtime install."
+	@if command -v mise >/dev/null 2>&1; then echo "Installing mise-managed runtimes..."; mise install; \
+	  else echo "mise not found, skipping runtime install."; fi
 
 # npm グローバル（claude など）を導入。
 # WHY: mise install は node を入れるが npm グローバルは再現しないため、mise の node 上で別途入れる。
@@ -145,7 +157,7 @@ reload: reload_zsh reload_vim
 clean:
 	@echo "Removing symbolic links..."
 	@find $(HOME) -maxdepth 1 -type l \( -name ".zshrc" -o -name ".vimrc" -o -name ".gvimrc" -o -name ".gitconfig" \) -exec rm {} \;
-	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)"
+	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)" "$(MISE_CONFIG_DST)"
 	@echo "Cleaned."
 
 brew:
@@ -193,5 +205,7 @@ install: install-brew mise-install npm-globals all local-files vscode
 	@echo "  1. ~/.zshrc.local と ~/.gitconfig-work に実際の値を記入してください。"
 	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
 
-.PHONY: all install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
+.PHONY: all FORCE install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
         apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install
+
+FORCE:

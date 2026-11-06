@@ -18,7 +18,8 @@ cd ~/dotfiles && make install
 # 3. 機密情報・マシン固有の環境変数を手動作成（リポジトリ管理外）
 cp ~/dotfiles/zsh/.zshrc.local.example ~/.zshrc.local           # JIRA / gcloud などの値を記入
 cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git 設定
-# ~/DeNA/ 配下用 ~/.gitconfig-dena、~/ZeroColor/ 配下用 ~/.gitconfig-zerocolor も同じ雛形から作成（[user] email を記入）
+# ~/DeNA/ 配下用 ~/.gitconfig-dena、~/ZeroColor/ 配下用 ~/.gitconfig-zerocolor は make では作られないため、必要なら上記雛形を手動コピーして [user] email を記入
+# cmux を brew 管理外で導入済みの Mac では、brew bundle の前に一度 brew install --cask --adopt cmux を実行する
 
 # 4. 以後この dotfiles に push したくなったら GitHub 認証を通す（どちらか）。
 #    - HTTPS: gh auth login（.gitconfig の credential helper が gh を使う。gh は Brewfile で導入済み）
@@ -34,6 +35,7 @@ cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git �
 | `vim/` | `.vimrc` / `.gvimrc` |
 | `brew/` | `Brewfile`（バージョン管理は mise に一本化） |
 | `ghostty/` | Ghostty 設定 |
+| `mise/` | mise のグローバル設定（`~/.config/mise/config.toml`） |
 | `cmux/` | cmux 設定（`~/.config/cmux/cmux.json`、JSONC） |
 | `starship/` | プロンプト設定 |
 | `vscode/` | 拡張機能リスト・keybindings・settings |

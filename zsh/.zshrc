@@ -83,7 +83,7 @@ eval "$(starship init zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export PATH="$PATH:$HOME/Library/Python/3.12/bin"
+[ -d "$HOME/Library/Python/3.12/bin" ] && export PATH="$PATH:$HOME/Library/Python/3.12/bin"
 
 delete_by_extension() {
     if [[ -z "$1" ]]; then
@@ -143,7 +143,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # gcloud 用 Python を mise の 3.11 系に固定（パッチ版を直指定すると mise 更新で消えるため 3.11 エイリアスを参照）
-export CLOUDSDK_PYTHON="${HOME}/.local/share/mise/installs/python/3.11/bin/python3"
+[ -x "${HOME}/.local/share/mise/installs/python/3.11/bin/python3" ] && export CLOUDSDK_PYTHON="${HOME}/.local/share/mise/installs/python/3.11/bin/python3"
 
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

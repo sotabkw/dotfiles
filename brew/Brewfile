@@ -1,4 +1,3 @@
-tap "go-delve/delve"
 tap "ariga/tap"
 
 # === Version / runtime management ===
