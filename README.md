@@ -12,14 +12,15 @@ xcode-select --install
 # 1. clone（public リポジトリなので SSH 鍵が無くても HTTPS で取得できる）
 git clone https://github.com/sotabkw/dotfiles.git ~/dotfiles
 
-# 2. Homebrew パッケージ + symlink + VS Code をまとめて適用（Homebrew 未導入なら自動で入る）
-cd ~/dotfiles && make install
+# 2. cmux を brew 管理外で導入済みの Mac のみ: brew bundle が既存 app と衝突しないよう先に取り込む
+#    brew install --cask --adopt cmux
 
-# 3. 機密情報・マシン固有の環境変数を手動作成（リポジトリ管理外）
-cp ~/dotfiles/zsh/.zshrc.local.example ~/.zshrc.local           # JIRA / gcloud などの値を記入
-cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git 設定
-# ~/DeNA/ 配下用 ~/.gitconfig-dena、~/ZeroColor/ 配下用 ~/.gitconfig-zerocolor は make では作られないため、必要なら上記雛形を手動コピーして [user] email を記入
-# cmux を brew 管理外で導入済みの Mac では、brew bundle の前に一度 brew install --cask --adopt cmux を実行する
+# 3. Homebrew パッケージ・symlink・mise ランタイム・npm グローバル・local 雛形・VS Code をまとめて適用
+#    （Homebrew 未導入なら自動で入る。~/.zshrc.local と ~/.gitconfig-work は雛形から作成され、既存は上書きしない）
+cd ~/dotfiles && make install
+#    作成された ~/.zshrc.local（JIRA / gcloud など）と ~/.gitconfig-work に実際の値を記入する。
+#    ~/DeNA/ 用 ~/.gitconfig-dena、~/ZeroColor/ 用 ~/.gitconfig-zerocolor は自動作成されないため、
+#    必要なら ~/dotfiles/git/.gitconfig-work.example をコピーして [user] email を記入する。
 
 # 4. 以後この dotfiles に push したくなったら GitHub 認証を通す（どちらか）。
 #    - HTTPS: gh auth login（.gitconfig の credential helper が gh を使う。gh は Brewfile で導入済み）
@@ -30,8 +31,8 @@ cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git �
 
 | ディレクトリ | 内容 |
 |---|---|
-| `zsh/` | `.zshrc`（`.zshrc.local` で機密を分離） |
-| `git/` | `.gitconfig`（`~/work/` 配下は `.gitconfig-work` を include） |
+| `zsh/` | `.zshrc`（`.zshrc.local` で機密を分離）、雛形 `.zshrc.local.example` |
+| `git/` | `.gitconfig`（`~/work/`・`~/DeNA/`・`~/ZeroColor/` 配下はそれぞれ `~/.gitconfig-work`・`-dena`・`-zerocolor` を include）、雛形 `.gitconfig-work.example` |
 | `vim/` | `.vimrc` / `.gvimrc` |
 | `brew/` | `Brewfile`（バージョン管理は mise に一本化） |
 | `ghostty/` | Ghostty 設定 |
@@ -45,8 +46,13 @@ cp ~/dotfiles/git/.gitconfig-work.example ~/.gitconfig-work   # 仕事用 git �
 
 | コマンド | 内容 |
 |---|---|
-| `make install` | brew + symlink + vscode を一括適用 |
-| `make all` | symlink のみ |
+| `make install` | install-brew → all → mise-install → npm-globals → local-files → vscode を順に実行 |
+| `make all`（`make` のみでも可） | 各設定の symlink を作成（既存の実ファイルは `.bak.<日時>` に退避） |
 | `make brew` | Brewfile の適用 + cleanup |
-| `make reload` | zsh / vim 設定をリロード |
-| `make clean` | symlink を削除 |
+| `make mise-install` | mise/config.toml のランタイムを導入 |
+| `make npm-globals` | npm グローバル（claude / redocly / ccusage）を導入 |
+| `make local-files` | `~/.zshrc.local`・`~/.gitconfig-work` を雛形から作成（既存は上書きしない） |
+| `make vscode` | VS Code の拡張導入と settings / keybindings のリンク |
+| `make list-vscode-extensions` | 導入済み拡張を `vscode/extensions.txt` に書き出す |
+| `make reload` | zsh / vim 設定を読み込み確認（実行中のシェルには反映されないので `exec zsh` を使う） |
+| `make clean` | dotfiles が張った symlink を削除（実ファイルと `.bak` は残す） |

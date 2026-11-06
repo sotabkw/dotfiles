@@ -125,12 +125,6 @@ elif [ -x "$HOME/.local/bin/mise" ]; then
 fi
 export JQ_COLORS='1;34:1;31:1;32:0;35:0;36:1;33:1;33'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
 # ローカル設定（機密情報など）
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
@@ -139,7 +133,7 @@ alias ccauto='claude --enable-auto-mode'
 
 eval "$(direnv hook zsh)"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-# libpq (keg-only): provides psql for db access
+# libpq は keg-only のため psql を使うには PATH を明示的に通す必要がある
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # gcloud 用 Python を mise の 3.11 系に固定（パッチ版を直指定すると mise 更新で消えるため 3.11 エイリアスを参照）

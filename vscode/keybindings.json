@@ -40,11 +40,6 @@
     "when": "editorTextFocus && foldingEnabled"
   },
   {
-    "key": "cmd+t cmd+o",
-    "command": "editor.unfoldAllMarkerRegions",
-    "when": "editorTextFocus && foldingEnabled"
-  },
-  {
     "key": "cmd+k cmd+9",
     "command": "-editor.unfoldAllMarkerRegions",
     "when": "editorTextFocus && foldingEnabled"

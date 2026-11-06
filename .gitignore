@@ -1,4 +1,4 @@
-# ローカル上書き・機密情報（home 直下に手動作成。リポジトリ管理外）
+# ローカル上書き・機密情報（make local-files などで home 直下に作成。リポジトリ管理外）
 .zshrc.local
 .gitconfig-work
 .gitconfig-zerocolor
@@ -9,3 +9,10 @@
 
 # OS
 .DS_Store
+
+# エディタの一時ファイル・バックアップ
+*.swp
+*.swo
+*~
+*.bak
+*.bak.*

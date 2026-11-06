@@ -53,157 +53,161 @@ endif
 
 # 各設定ファイルのリンク処理を個別に記述（FORCE: リンク先が実ファイルで新しくても mtime 判定でスキップさせない）
 $(HOME)/.zshrc: $(DOTFILES_DIR)/zsh/.zshrc FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(HOME)/.vimrc: $(DOTFILES_DIR)/vim/.vimrc FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(HOME)/.gvimrc: $(DOTFILES_DIR)/vim/.gvimrc FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(HOME)/.gitconfig: $(DOTFILES_DIR)/git/.gitconfig FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(STARSHIP_CONFIG_DST): $(STARSHIP_CONFIG_SRC) FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(GHOSTTY_CONFIG_DST): $(GHOSTTY_CONFIG_SRC) FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(CMUX_CONFIG_DST): $(CMUX_CONFIG_SRC) FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 $(MISE_CONFIG_DST): $(MISE_CONFIG_SRC) FORCE
-	@test -e "$<" || { echo "Error: $< not found."; exit 1; }
+	@test -e "$<" || { echo "エラー: $< が見つかりません。"; exit 1; }
 	@mkdir -p "$(shell dirname $@)"
-	@if [ -e "$@" ] && [ ! -L "$@" ]; then mv "$@" "$@.bak"; echo "既存ファイルを退避しました: $@.bak"; fi
+	@if [ -e "$@" ] && [ ! -L "$@" ]; then b="$@.bak.$$(date +%Y%m%d%H%M%S)"; mv "$@" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
 	@ln -sfn "$<" "$@"
-	@echo "Linked: $@"
+	@echo "リンクしました: $@"
 
 all: $(addprefix $(HOME)/, $(FILES)) $(STARSHIP_CONFIG_DST) $(GHOSTTY_CONFIG_DST) $(CMUX_CONFIG_DST) $(MISE_CONFIG_DST)
-	@echo "Dotfiles are now linked."
+	@echo "dotfiles のリンクが完了しました。"
 
 # Homebrew 本体が無ければインストール（新マシン向け）
 install-homebrew:
 	@command -v brew >/dev/null 2>&1 || \
-	  { echo "Installing Homebrew..."; \
+	  { echo "Homebrew をインストールします..."; \
 	    /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; }
 
 # Brewfile からパッケージを導入。Homebrew を PATH に通してから bundle する。
 install-brew: install-homebrew
-	@echo "Installing Homebrew packages from $(BREWFILE)..."
+	@echo "Brewfile からパッケージを導入します: $(BREWFILE)"
 	@eval "$$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"; \
 	  brew bundle --file=$(BREWFILE)
 
 # mise 管理のランタイム（node/go/terraform 等）を導入。
 # WHY: brew で mise を入れただけでは実体は入らず、config に基づく `mise install` が必要。
 mise-install:
-	@if command -v mise >/dev/null 2>&1; then echo "Installing mise-managed runtimes..."; mise install; \
-	  else echo "mise not found, skipping runtime install."; fi
+	@if command -v mise >/dev/null 2>&1; then echo "mise 管理のランタイムを導入します..."; mise install; \
+	  else echo "mise が見つからないためランタイムの導入をスキップします。"; fi
 
 # npm グローバル（claude など）を導入。
 # WHY: mise install は node を入れるが npm グローバルは再現しないため、mise の node 上で別途入れる。
+# mise use -g は symlink 越しに dotfiles の mise/config.toml を書き換えるため使わない（node は config.toml で宣言済み）。
 npm-globals:
-	@command -v mise >/dev/null 2>&1 || { echo "mise not found, skipping npm globals."; exit 0; }
-	@echo "Setting node (lts) as the global default via mise..."
-	@mise use -g node@lts
-	@echo "Installing npm global packages: $(NPM_GLOBALS)"
+	@command -v mise >/dev/null 2>&1 || { echo "mise が見つからないため npm グローバルの導入をスキップします。"; exit 0; }
+	@echo "npm グローバルパッケージを導入します: $(NPM_GLOBALS)"
 	@mise exec node@lts -- npm install -g $(NPM_GLOBALS)
 
 # 機密・マシン固有の local ファイルを雛形から作成（既存は上書きしない）
 local-files:
 	@test -f "$(ZSHRC_LOCAL_DST)" || \
-	  { cp "$(ZSHRC_LOCAL_SRC)" "$(ZSHRC_LOCAL_DST)"; echo "Created $(ZSHRC_LOCAL_DST) (要編集: 機密値を記入)"; }
+	  { cp "$(ZSHRC_LOCAL_SRC)" "$(ZSHRC_LOCAL_DST)" && echo "作成しました: $(ZSHRC_LOCAL_DST)（要編集: 機密値を記入）"; }
 	@test -f "$(GITCONFIG_LOCAL_DST)" || \
-	  { cp "$(GITCONFIG_LOCAL_SRC)" "$(GITCONFIG_LOCAL_DST)"; echo "Created $(GITCONFIG_LOCAL_DST) (要編集)"; }
+	  { cp "$(GITCONFIG_LOCAL_SRC)" "$(GITCONFIG_LOCAL_DST)" && echo "作成しました: $(GITCONFIG_LOCAL_DST)（要編集）"; }
 
 # zsh の設定をリロード
 reload_zsh:
-	@echo "Reloading zsh configuration..."
+	@echo "zsh 設定をリロードします..."
 	@zsh -ic 'source ~/.zshrc'
 
 # vim の設定をリロード
 reload_vim:
-	@echo "Reloading vim configuration..."
-	@vim -c "source ~/.vimrc" -c "echom 'Vim configuration reloaded.'" || echo "Error reloading Vim configuration."
+	@echo "vim 設定をリロードします..."
+	@vim -c "source ~/.vimrc" -c "echom 'Vim configuration reloaded.'" || echo "vim 設定のリロードに失敗しました。"
 
 reload: reload_zsh reload_vim
-	@echo "All configurations reloaded."
+	@echo "すべての設定をリロードしました。"
 
 clean:
-	@echo "Removing symbolic links..."
+	@echo "シンボリックリンクを削除します..."
 	@find $(HOME) -maxdepth 1 -type l \( -name ".zshrc" -o -name ".vimrc" -o -name ".gvimrc" -o -name ".gitconfig" \) -exec rm {} \;
-	@rm -f "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)" "$(MISE_CONFIG_DST)"
-	@echo "Cleaned."
+	@for f in "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)" "$(MISE_CONFIG_DST)"; do [ -L "$$f" ] && rm "$$f"; done; true
+	@echo "削除しました。"
 
 brew:
-	@echo "Installing/updating Homebrew packages from Brewfile..."
+	@echo "Brewfile のパッケージを導入・更新します..."
 	@brew bundle --file=$(BREWFILE)
 	@brew cleanup
 
 apply-vscode-extensions:
-	@echo "Applying VS Code extensions from $(VSCODE_EXTENSIONS_FILE)..."
+	@echo "VS Code 拡張を導入します: $(VSCODE_EXTENSIONS_FILE)"
 	@command -v code >/dev/null 2>&1 || \
 	{ echo "'code' コマンドが見つからないため拡張のインストールをスキップします（VS Code 起動後に Cmd+Shift+P > Install 'code' command でPATHを通すと適用可能）。"; exit 0; }
 	@test -f $(VSCODE_EXTENSIONS_FILE) || \
 	{ echo "$(VSCODE_EXTENSIONS_FILE) が存在しません。'make list-vscode-extensions' を実行して作成してください。"; exit 0; }
 	@while IFS= read -r extension; do \
-        echo "Applying VS Code extension: $$extension"; \
+        echo "VS Code 拡張を導入: $$extension"; \
         code --install-extension "$$extension"; \
     done < $(VSCODE_EXTENSIONS_FILE)
 
 apply-vscode-keybindings:
-	@echo "Applying VS Code keybindings from $(VSCODE_KEYBINDINGS_DST) to $(VSCODE_KEYBINDINGS_LINK)..."
-	mkdir -p "$(shell dirname "$(VSCODE_KEYBINDINGS_LINK)")"
-	ln -sf "$(VSCODE_KEYBINDINGS_DST)" "$(VSCODE_KEYBINDINGS_LINK)"
+	@echo "VS Code の keybindings をリンクします: $(VSCODE_KEYBINDINGS_LINK)"
+	@mkdir -p "$(shell dirname "$(VSCODE_KEYBINDINGS_LINK)")"
+	@f="$(VSCODE_KEYBINDINGS_LINK)"; if [ -e "$$f" ] && [ ! -L "$$f" ]; then b="$$f.bak.$$(date +%Y%m%d%H%M%S)"; mv "$$f" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
+	@ln -sfn "$(VSCODE_KEYBINDINGS_DST)" "$(VSCODE_KEYBINDINGS_LINK)"
 
 apply-vscode-settings:
-	@echo "Applying VS Code settings from $(VSCODE_SETTINGS_DST) to $(VSCODE_SETTINGS_LINK)..."
-	mkdir -p "$(shell dirname "$(VSCODE_SETTINGS_LINK)")"
-	ln -sf "$(VSCODE_SETTINGS_DST)" "$(VSCODE_SETTINGS_LINK)"
+	@echo "VS Code の settings をリンクします: $(VSCODE_SETTINGS_LINK)"
+	@mkdir -p "$(shell dirname "$(VSCODE_SETTINGS_LINK)")"
+	@f="$(VSCODE_SETTINGS_LINK)"; if [ -e "$$f" ] && [ ! -L "$$f" ]; then b="$$f.bak.$$(date +%Y%m%d%H%M%S)"; mv "$$f" "$$b"; echo "既存ファイルを退避しました: $$b"; fi
+	@ln -sfn "$(VSCODE_SETTINGS_DST)" "$(VSCODE_SETTINGS_LINK)"
 
 apply-vscode: apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings
-	@echo "VS Code settings and extensions applied."
+	@echo "VS Code の設定と拡張を適用しました。"
 
 list-vscode-extensions:
-	@echo "Listing installed VS Code extensions to $(VSCODE_EXTENSIONS_FILE)..."
+	@echo "導入済みの VS Code 拡張を書き出します: $(VSCODE_EXTENSIONS_FILE)"
 	command -v code >/dev/null 2>&1 || \
 	{ echo "Visual Studio Codeの 'code' コマンドが見つかりません。"; exit 1; }
 	code --list-extensions > $(VSCODE_EXTENSIONS_FILE)
 
 vscode: apply-vscode
-	@echo "VS Code setup complete."
+	@echo "VS Code のセットアップが完了しました。"
 
 # 新しいマシンでこれ一つを実行すれば一通り完了する
-install: install-brew mise-install npm-globals all local-files vscode
+# WHY: all（mise/config.toml のリンク）を mise-install より先に置かないと、設定が無いまま mise install が走り pnpm/gcloud が入らない
+install: install-brew all mise-install npm-globals local-files vscode
 	@echo ""
 	@echo "セットアップ完了！"
 	@echo "  1. ~/.zshrc.local と ~/.gitconfig-work に実際の値を記入してください。"
 	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
+
+.NOTPARALLEL:
 
 .PHONY: all FORCE install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
         apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install

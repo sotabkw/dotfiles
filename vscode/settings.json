@@ -1,5 +1,4 @@
 {
-  "python.pythonPath": "/usr/bin/python3",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "git.autofetch": true,
@@ -133,7 +132,6 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "go.toolsManagement.autoUpdate": true,
-  "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.accessibilitySupport": "on",
   "eslint.workingDirectories": [],
@@ -151,7 +149,6 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
-  "terminal.integrated.shellArgs.linux": ["-l"],
   "redhat.telemetry.enabled": true,
   "workbench.colorTheme": "Theme",
   "workbench.iconTheme": "material-icon-theme",
