@@ -19,7 +19,6 @@ ap-northeast-1 = "jp"
 disabled = false
 threshold = -1
 symbol = " "
-separator = "/"
 style = "bold dimmed blue"
 
 [package]

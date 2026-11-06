@@ -138,11 +138,12 @@ mise-install:
 
 # npm グローバル（claude など）を導入。
 # WHY: mise install は node を入れるが npm グローバルは再現しないため、mise の node 上で別途入れる。
+# WHY: npm 11.20 以降は postinstall を allowScripts で許可しないと実行せず、claude-code の本体セットアップ（install.cjs）が走らない。
 # mise use -g は symlink 越しに dotfiles の mise/config.toml を書き換えるため使わない（node は config.toml で宣言済み）。
 npm-globals:
 	@command -v $(MISE) >/dev/null 2>&1 || { echo "mise が見つからないため npm グローバルの導入をスキップします。"; exit 0; }
 	@echo "npm グローバルパッケージを導入します: $(NPM_GLOBALS)"
-	@$(MISE) exec node@lts -- npm install -g $(NPM_GLOBALS)
+	@$(MISE) exec node@lts -- npm install -g --allow-scripts=@anthropic-ai/claude-code $(NPM_GLOBALS)
 
 # 機密・マシン固有の local ファイルを雛形から作成（既存は上書きしない）
 local-files:
