@@ -2,3 +2,4 @@
 gcloud = "587.0.0"
 node = "lts"
 pnpm = "latest"
+python = "3.11"
