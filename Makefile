@@ -199,6 +199,31 @@ list-vscode-extensions:
 vscode: apply-vscode
 	@echo "VS Code のセットアップが完了しました。"
 
+# WARP の utun MTU を常駐監視でクランプする LaunchDaemon（自宅回線の経路 MTU が 1280 のため必要）。
+# 回線依存なので install には含めない。
+# WHY: root で実行されるため symlink ではなく root 所有でコピーする（ユーザー書き込み可能なファイルを root が実行すると権限昇格の穴になる）。
+WARP_MTU_SCRIPT_SRC := $(DOTFILES_DIR)/warp/warp-mtu-clamp.sh
+WARP_MTU_SCRIPT_DST := /usr/local/sbin/warp-mtu-clamp.sh
+WARP_MTU_PLIST_SRC := $(DOTFILES_DIR)/warp/com.local.warp-mtu-clamp.plist
+WARP_MTU_PLIST_DST := /Library/LaunchDaemons/com.local.warp-mtu-clamp.plist
+WARP_MTU_LABEL := com.local.warp-mtu-clamp
+
+warp-mtu-clamp:
+	@echo "WARP MTU クランプを導入します（sudo が必要です）..."
+	@sudo install -d -o root -g wheel -m 755 /usr/local/sbin
+	@sudo install -o root -g wheel -m 755 "$(WARP_MTU_SCRIPT_SRC)" "$(WARP_MTU_SCRIPT_DST)"
+	@sudo install -o root -g wheel -m 644 "$(WARP_MTU_PLIST_SRC)" "$(WARP_MTU_PLIST_DST)"
+	@sudo launchctl bootout system/$(WARP_MTU_LABEL) 2>/dev/null || true
+	@sudo launchctl bootstrap system "$(WARP_MTU_PLIST_DST)"
+	@sudo launchctl print system/$(WARP_MTU_LABEL) | grep -m1 'state ='
+	@echo "導入しました。ログ: /var/log/warp-mtu-clamp.log"
+
+warp-mtu-clamp-uninstall:
+	@echo "WARP MTU クランプを削除します（sudo が必要です）..."
+	@sudo launchctl bootout system/$(WARP_MTU_LABEL) 2>/dev/null || true
+	@sudo rm -f "$(WARP_MTU_PLIST_DST)" "$(WARP_MTU_SCRIPT_DST)"
+	@echo "削除しました。"
+
 # 新しいマシンでこれ一つを実行すれば一通り完了する
 # WHY: all（mise/config.toml のリンク）を mise-install より先に置かないと、設定が無いまま mise install が走り pnpm/gcloud が入らない
 install: install-brew all mise-install npm-globals local-files vscode
@@ -210,7 +235,7 @@ install: install-brew all mise-install npm-globals local-files vscode
 
 .NOTPARALLEL:
 
-.PHONY: all FORCE install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
+.PHONY: all FORCE warp-mtu-clamp warp-mtu-clamp-uninstall install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
         apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install
 
 FORCE:

@@ -37,6 +37,7 @@ cd ~/dotfiles && make install
 | `brew/` | `Brewfile`（バージョン管理は mise に一本化） |
 | `ghostty/` | Ghostty 設定 |
 | `mise/` | mise のグローバル設定（`~/.config/mise/config.toml`） |
+| `warp/` | WARP の utun MTU を 1200 にクランプする LaunchDaemon（`make warp-mtu-clamp` で導入） |
 | `cmux/` | cmux 設定（`~/.config/cmux/cmux.json`、JSONC） |
 | `starship/` | プロンプト設定 |
 | `vscode/` | 拡張機能リスト・keybindings・settings |
@@ -55,4 +56,5 @@ cd ~/dotfiles && make install
 | `make vscode` | VS Code の拡張導入と settings / keybindings のリンク |
 | `make list-vscode-extensions` | 導入済み拡張を `vscode/extensions.txt` に書き出す |
 | `make reload` | zsh / vim 設定を読み込み確認（実行中のシェルには反映されないので `exec zsh` を使う） |
+| `make warp-mtu-clamp` | WARP MTU クランプを導入（sudo。経路 MTU が小さい回線用で install には含めない。削除は `make warp-mtu-clamp-uninstall`） |
 | `make clean` | dotfiles が張った symlink を削除（実ファイルと `.bak` は残す） |
