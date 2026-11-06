@@ -114,10 +114,19 @@ install-homebrew:
 	    /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; }
 
 # Brewfile からパッケージを導入。Homebrew を PATH に通してから bundle する。
+# WHY: Homebrew 7 以降は公式外の tap を brew trust しないと読み込まず、brew bundle が失敗する。
+# trust の無い古い brew では何もしない。
+BREW_TRUSTED_TAPS := ariga/tap
+
+brew-trust-taps:
+	@if brew help trust >/dev/null 2>&1; then \
+	  for t in $(BREW_TRUSTED_TAPS); do brew tap "$$t" && brew trust --tap "$$t"; done; \
+	fi
+
 install-brew: install-homebrew
 	@echo "Brewfile からパッケージを導入します: $(BREWFILE)"
 	@eval "$$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"; \
-	  brew bundle --file=$(BREWFILE)
+	  $(MAKE) --no-print-directory brew-trust-taps && brew bundle --file=$(BREWFILE)
 
 # mise 管理のランタイム（node/go/terraform 等）を導入。
 # WHY: brew で mise を入れただけでは実体は入らず、config に基づく `mise install` が必要。
@@ -159,7 +168,7 @@ clean:
 	@for f in "$(STARSHIP_CONFIG_DST)" "$(GHOSTTY_CONFIG_DST)" "$(CMUX_CONFIG_DST)" "$(MISE_CONFIG_DST)"; do [ -L "$$f" ] && rm "$$f"; done; true
 	@echo "削除しました。"
 
-brew:
+brew: brew-trust-taps
 	@echo "Brewfile のパッケージを導入・更新します..."
 	@brew bundle --file=$(BREWFILE)
 	@brew cleanup
@@ -235,7 +244,7 @@ install: install-brew all mise-install npm-globals local-files vscode
 
 .NOTPARALLEL:
 
-.PHONY: all FORCE warp-mtu-clamp warp-mtu-clamp-uninstall install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
+.PHONY: all FORCE brew-trust-taps warp-mtu-clamp warp-mtu-clamp-uninstall install-homebrew install-brew mise-install npm-globals local-files reload_zsh reload_vim reload clean brew \
         apply-vscode-extensions apply-vscode-keybindings apply-vscode-settings apply-vscode list-vscode-extensions vscode install
 
 FORCE:
