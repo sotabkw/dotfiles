@@ -4,8 +4,9 @@
 # .gitconfig の [includeIf "gitdir:~/work/"] から読み込まれる（リポジトリ管理外）。
 # 仕事用のメールアドレスを使う場合は [user] も追記する。
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+# GitHub への https アクセスを SSH に置き換える。SSH 鍵を GitHub に登録済みでないと clone/fetch が失敗するため既定では無効。
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com/
 
 # 例: 仕事用コミットの user を分けたい場合
 # [user]

@@ -205,7 +205,8 @@ install: install-brew all mise-install npm-globals local-files vscode
 	@echo ""
 	@echo "セットアップ完了！"
 	@echo "  1. ~/.zshrc.local と ~/.gitconfig-work に実際の値を記入してください。"
-	@echo "  2. シェルを開き直すか 'make reload' で設定を反映してください。"
+	@for f in .gitconfig-dena .gitconfig-zerocolor; do [ -f "$(HOME)/$$f" ] || echo "  ※ ~/$$f が無いため、対応ディレクトリ配下のコミットは個人メールになります（README 参照）。"; done
+	@echo "  2. シェルを開き直すか exec zsh で設定を反映してください。"
 
 .NOTPARALLEL:
 

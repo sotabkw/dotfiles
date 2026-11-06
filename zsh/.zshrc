@@ -2,6 +2,9 @@
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 
+# Homebrew インストーラは ~/.zprofile への追記を案内するだけで自動では行わないため、ここで PATH を通す（無いと starship 等が見つからない）
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 alias dc='docker-compose'
 alias la='ls -a'
 alias ll='ls -l'
@@ -122,6 +125,12 @@ if [ -x /opt/homebrew/bin/mise ]; then
   eval "$(/opt/homebrew/bin/mise activate zsh)"
 elif [ -x "$HOME/.local/bin/mise" ]; then
   eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
+# gcloud は mise 管理のため、補完はインストール先の completion.zsh.inc を読む
+if command -v mise >/dev/null 2>&1; then
+  _gcloud_dir="$(mise where gcloud 2>/dev/null)"
+  [ -f "$_gcloud_dir/completion.zsh.inc" ] && source "$_gcloud_dir/completion.zsh.inc"
+  unset _gcloud_dir
 fi
 export JQ_COLORS='1;34:1;31:1;32:0;35:0;36:1;33:1;33'
 
